@@ -1,0 +1,133 @@
+// requirements
+
+import './style.css';
+import {Feature, Map, View} from 'ol';
+import GeoJSON from 'ol/format/GeoJSON';
+import VectorSource from 'ol/source/Vector';
+import ImageWMS from 'ol/source/ImageWMS';
+import TileWMS from 'ol/source/TileWMS';
+import OSM from 'ol/source/OSM';
+import MousePosition from 'ol/control/MousePosition';
+import {createStringXY} from 'ol/coordinate';
+import {defaults as defaultControls} from 'ol/control';
+import {fromLonLat} from 'ol/proj';
+import {bbox as bboxStrategy} from 'ol/loadingstrategy';
+import {Image as ImageLayer, Tile as TileLayer, Vector as VectorLayer} from 'ol/layer';
+import {Circle, Fill, Stroke, Style} from 'ol/style';
+import CircleStyle from 'ol/style/Circle';
+
+
+// styles
+
+const STANDARDFILL = new Fill({
+  color: 'rgba( 57, 255, 202, 1.00 )'
+});
+
+const STANDARDSTROKE = new Stroke({
+  color: 'rgba(67, 79, 78, 0)',
+  width: 1.0
+});
+
+const styles = [
+
+]
+
+
+// define center and project to webmercator
+
+const melitaLonLat = [9, 49];
+const melitaWebMercator = fromLonLat(melitaLonLat);
+
+
+// add controls
+
+const mousePositionControl = new MousePosition({
+  coordinateFormat: createStringXY(4),
+  projection: 'EPSG:4326',
+  // comment the following two lines to have the mouse position
+  // be placed within the map.
+  // className: 'custom-mouse-position',
+  // target: document.getElementById('mouse-position'),
+});
+
+
+// define layer sources
+
+const gatewaysWFS = new VectorSource({
+  format: new GeoJSON(),
+  url: function (extent) {
+    return (
+      'http://localhost:8080/geoserver/ows?service=wfs&' +
+      'version=1.1.0&request=GetFeature&typename=melita:mv_gateways&' +
+      'outputFormat=application/json&srsname=EPSG:3857&' +
+      'bbox=' +
+      extent.join(',') +
+      ',EPSG:3857'
+    );
+  },
+  strategy: bboxStrategy
+});
+
+// const gatewaysWMS = new ImageWMS({
+//   //extent: [-115, -140, 150, 129],
+//   source: new ImageWMS({
+//     url: 'localhost:8080/geoserver/melita/wms',
+//     params: {'LAYERS': 'melita'},
+//     ratio: 1,
+//     serverType: 'geoserver'
+//   }),
+// });
+
+
+// define layers
+
+var gateways = new VectorLayer({
+  source: gatewaysWFS
+  // ,
+  // style: new Circle({
+  //   radius: 20,
+  //   fill: new Fill({
+  //     color: '#ff9900',
+  //     opacity: 0.6
+  //   }),
+  //   stroke: new Stroke({
+  //     color: '#ffcc00',
+  //     opacity: 0.4
+  //   })
+});
+
+
+
+// build map canvas
+
+const map = new Map({
+  target: 'map',
+  controls: defaultControls().extend([mousePositionControl]),
+  layers: [
+    new TileLayer({
+      source: new OSM()
+    }),
+    //gatewaysWMS,
+    gateways
+  ],
+  view: new View({
+    projection: 'EPSG:3857',
+    center: melitaWebMercator,
+    zoom: 5
+  })
+});
+
+// add epsg-selector and define precision of the coordinate
+
+// const projectionSelect = document.getElementById('projection');
+// projectionSelect.addEventListener('change', function (event) {
+//   mousePositionControl.setProjection(event.target.value);
+// });
+
+// const precisionInput = document.getElementById('precision');
+// precisionInput.addEventListener('change', function (event) {
+//   const format = createStringXY(event.target.valueAsNumber);
+//   mousePositionControl.setCoordinateFormat(format);
+// });
+
+

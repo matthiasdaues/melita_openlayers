@@ -1,0 +1,21 @@
+What is in a web map?
+
+- basemap
+    - source?
+    - technology?
+
+- layers
+    - vector
+        - source
+        - style 
+        - filter
+        
+    - raster
+        - source
+        - style
+
+- decorations
+    - popups
+    - overlays
+
+- controls

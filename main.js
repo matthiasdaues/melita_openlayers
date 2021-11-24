@@ -70,7 +70,7 @@ const locationStyle = new Style({
 
 // 02 define layers and content
 // 02 1 vector layers
-// 02 1 1 Gateway-Locations
+// 02 1 1 Gateway-Locations as WFS
 const gatewayLocationsWFS = new VectorLayer({
   style: locationStyle,
   source: new VectorSource({
@@ -89,7 +89,7 @@ const gatewayLocationsWFS = new VectorLayer({
   })
 });
 
-// 02 1 2 Gateway-Locations als WMS
+// 02 1 2 Gateway-Locations as WMS
 const gatewayLocationsWMS = new TileLayer({
   source: new TileWMS({
     url: 'http://localhost:8080/geoserver/melita/wms',

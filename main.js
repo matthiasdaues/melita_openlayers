@@ -99,12 +99,21 @@ const gatewayLocationsWMS = new TileLayer({
   })
 });
 
+// 02 2 1 Potential Coverage from GeoJSON-File
+const potentialCoverage = new VectorLayer({
+  source: new VectorSource({
+    format: new GeoJSON(),
+    url: '/home/matthiasdaues/Documents/@nextcloud/datenschoenheit/melita/Simulations/goetel/coverage_110dbm.json.txt'
+  })
+});
+
 // put all on a map
 new Map({
   target: 'map',
   layers: [
       cartoLightAll,
       gatewayLocationsWFS,
+      potentialCoverage
       //gatewayLocationsWMS
   ],
   view: new View({

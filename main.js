@@ -31,8 +31,9 @@ import {createStringXY} from 'ol/coordinate';
 import {fromLonLat} from 'ol/proj';
 
 // styles
-import {Circle, Fill, Stroke, Style} from 'ol/style';
-import CircleStyle from 'ol/style/Circle';
+import {Circle as CircleStyle, Fill, Stroke, Style} from 'ol/style';
+import { red } from 'nanocolors';
+
 
 // 00 define basemaps
 // 00 1 basemaps from carto
@@ -50,15 +51,28 @@ const cartoDarkAll = new TileLayer({
 // 00 2 basemaps from ESRI
 // 00 3 basemaps from OSM
 
+
 // 01 extents, layout and styles
 // 01 1 center in WGS84 and reprojection to webmercator
 const melitaLonLat = [9.5, 51.35];
 const melitaWebMercator = fromLonLat(melitaLonLat);
 
+// 01 2 styles
+// 01 2 1 gateway locations static
+const locationStyle = new Style({
+  image: new CircleStyle({
+    radius: 3,
+    fill: new Fill({color: '#39ffca'}),
+    stroke: new Stroke({color: '#076859', width: 0.5}),
+  })
+});
+
+
 // 02 define layers and content
 // 02 1 vector layers
 // 02 1 1 Gateway-Locations
 const gatewayLocationsWFS = new VectorLayer({
+  style: locationStyle,
   source: new VectorSource({
     format: new GeoJSON(),
     url: function (extent) {
@@ -71,9 +85,10 @@ const gatewayLocationsWFS = new VectorLayer({
         ',EPSG:3857'
       )
     },
-    strategy: bboxStrategy
+   strategy: bboxStrategy 
   })
 });
+
 // 02 1 2 Gateway-Locations als WMS
 const gatewayLocationsWMS = new TileLayer({
   source: new TileWMS({
@@ -89,8 +104,8 @@ new Map({
   target: 'map',
   layers: [
       cartoLightAll,
-      //gatewayLocationsWFS,
-      gatewayLocationsWMS
+      gatewayLocationsWFS,
+      //gatewayLocationsWMS
   ],
   view: new View({
     center: melitaWebMercator,

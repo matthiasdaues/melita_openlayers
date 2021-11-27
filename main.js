@@ -58,35 +58,46 @@ const melitaLonLat = [9.5, 51.35];
 const melitaWebMercator = fromLonLat(melitaLonLat);
 
 // 01 2 styles
-// 01 2 1 gateway locations static
-const locationStyle = new Style({
+// 01 2 1 gateway locations styles
+// 01 2 1 1 active gateway
+const locationStyleActive = new Style({
   image: new CircleStyle({
-    radius: 3,
+    radius: 4,
     fill: new Fill({color: '#39ffca'}),
     stroke: new Stroke({color: '#076859', width: 0.5}),
   })
 });
+// 01 2 1 2 inactive gateway
+const locationStyleInactive = new Style({
+  image: new CircleStyle({
+    radius: 2,
+    fill: new Fill({color: 'lightgrey'}),
+    stroke: new Stroke({color: '#076859', width: 0.5}),
+  })
+});
 
+// 01 2 2 gateway locations dynamic style functions
+// 01 2 2 1 gateway styled by status
+const locationStyle = function (feature) {
+  const styleTable = {
+    "0": locationStyleInactive,
+    "1": locationStyleActive,
+    "2": locationStyleActive
+  };
+  return styleTable[feature.get("status")] || locationStyleInactive
+};
 
 // 02 define layers and content
 // 02 1 vector layers
 // 02 1 1 Gateway-Locations as WFS
 const gatewayLocationsWFS = new VectorLayer({
-  style: locationStyle,
   source: new VectorSource({
     format: new GeoJSON(),
-    url: function (extent) {
-      return (
-        'http://localhost:8080/geoserver/ows?service=wfs&' +
+    url:'http://localhost:8080/geoserver/ows?service=wfs&' +
         'version=1.1.0&request=GetFeature&typename=melita:mv_gateways&' +
-        'outputFormat=application/json&srsname=EPSG:3857&' +
-        'bbox=' +
-        extent.join(',') +
-        ',EPSG:3857'
-      )
-    },
-   strategy: bboxStrategy 
-  })
+        'outputFormat=application/json&srsname=EPSG:3857&'
+    }),
+  style: locationStyle
 });
 
 // 02 1 2 Gateway-Locations as WMS

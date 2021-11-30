@@ -79,11 +79,11 @@ const locationStyleInactive = new Style({
 // 01 2 1 3 dynamic gateway location style by status
 const locationStyle = function (feature) {
   const styleTable = {
-    "0": locationStyleInactive,
+//    "0": locationStyleInactive,
     "1": locationStyleActive,
     "2": locationStyleActive
   };
-  return styleTable[feature.get("status")] || locationStyleInactive
+  return styleTable[feature.get("status")] //|| locationStyleInactive
 };
 // 01 2 2 coverage styles
 // 01 2 2 1 potential coverage over all available locations
@@ -91,6 +91,29 @@ const potentialCoverageStyle = new Style({
   fill: new Fill({color: 'rgba( 42, 177, 184, 0.20 )'}),
   stroke: new Stroke({color: 'rgba( 42, 177, 184, 1.00 )', width: 0.5})
 });
+// 01 2 2 2 active coverage
+const active120 = new Style({ fill: new Fill({color: 'rgba( 107, 176, 175, 0.55 )'})})
+const active110 = new Style({ fill: new Fill({color: 'rgba( 171, 221, 164, 0.55 )'})})
+const active100 = new Style({ fill: new Fill({color: 'rgba( 213, 238, 178, 0.55 )'})})
+const active90 = new Style({ fill: new Fill({color: 'rgba( 255, 255, 191, 0.55 )'})})
+const active80 = new Style({ fill: new Fill({color: 'rgba( 254, 215, 144, 0.55 )'})})
+const active70 = new Style({ fill: new Fill({color: 'rgba( 253, 174, 97, 0.55 )'})})
+const active60 = new Style({ fill: new Fill({color: 'rgba( 234, 99, 62, 0.55 )'})})
+const active50 = new Style({ fill: new Fill({color: 'rgba( 215, 25, 28, 0.55 )'})})
+const activeCoverageStyle = function (feature) {
+  const styleTable = {
+    "-120": active120,
+    "-110": active110,
+    "-100": active100,
+    "-90": active90,
+    "-80": active80,
+    "-70": active70,
+    "-60": active60,
+    "-50": active50,
+  };
+  return styleTable[feature.get("dbm")] || potentialCoverageStyle
+};
+
 
 // 02 define layers and content
 // 02 1 vector layers
@@ -133,6 +156,25 @@ const potentialCoverageWMS = new TileLayer({
     transition: 0,
   })
 });
+// 02 1 5 Active Coverage as WFS
+const activeCoverageWFS = new VectorLayer({
+  source: new VectorSource({
+    format: new GeoJSON(),
+    url:'http://localhost:8080/geoserver/ows?service=wfs&' +
+        'version=1.1.0&request=GetFeature&typename=melita:active_coverage&' +
+        'outputFormat=application/json&srsname=EPSG:3857&'
+    }),
+  style: activeCoverageStyle
+});
+// 02 1 6 Active Coverage as WMS
+const activeCoverageWMS = new TileLayer({
+  source: new TileWMS({
+    url: 'http://localhost:8080/geoserver/melita/wms',
+    params: {'LAYERS': 'melita:active_coverage'}, // for tiled WMS add ", 'TILED': true"
+    serverType: 'geoserver',
+    transition: 0,
+  })
+});
 
 // 02 2 Raster layers
 // 02 2 1 active coverage
@@ -143,10 +185,9 @@ new Map({
   target: 'map',
   layers: [
       cartoLightAll,
-      //potentialCoverageWMS,
       potentialCoverageWFS,
+      activeCoverageWFS,
       gatewayLocationsWFS
-      //gatewayLocationsWMS
   ],
   view: new View({
     center: melitaWebMercator,

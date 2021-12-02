@@ -27,6 +27,12 @@ import GeoTIFF from 'ol/source/GeoTIFF'
 // layer types
 import {Image as ImageLayer, Tile as TileLayer, Vector as VectorLayer} from 'ol/layer';
 
+// vector tile layer
+import VectorTileLayer from 'ol/layer/VectorTile';
+import VectorTileSource from 'ol/source/VectorTile';
+import MVT from 'ol/format/MVT';
+import WMTSCapabilities from 'ol/format/WMTSCapabilities';
+
 // geoinformation and projections
 import {createStringXY} from 'ol/coordinate';
 import {fromLonLat} from 'ol/proj';
@@ -34,6 +40,7 @@ import {fromLonLat} from 'ol/proj';
 // styles
 import {Circle as CircleStyle, Fill, Stroke, Style} from 'ol/style';
 import { red } from 'nanocolors';
+
 
 
 // 00 define basemaps
@@ -83,12 +90,12 @@ const locationStyle = function (feature) {
     "1": locationStyleActive,
     "2": locationStyleActive
   };
-  return styleTable[feature.get("status")] //|| locationStyleInactive
+  return styleTable[feature.get("status")]
 };
 // 01 2 2 coverage styles
 // 01 2 2 1 potential coverage over all available locations
 const potentialCoverageStyle = new Style({
-  fill: new Fill({color: 'rgba( 42, 177, 184, 0.20 )'}),
+  fill: new Fill({color: 'rgba( 42, 177, 184, 0.2 )'}),
   stroke: new Stroke({color: 'rgba( 42, 177, 184, 1.00 )', width: 0.5})
 });
 // 01 2 2 2 active coverage
@@ -111,7 +118,7 @@ const activeCoverageStyle = function (feature) {
     "-60": active60,
     "-50": active50,
   };
-  return styleTable[feature.get("dbm")] || potentialCoverageStyle
+  return styleTable[feature.get("dbm")]
 };
 
 
@@ -147,16 +154,7 @@ const potentialCoverageWFS = new VectorLayer({
     }),
   style: potentialCoverageStyle
 });
-// 02 1 4 Potential Coverage as WMS
-const potentialCoverageWMS = new TileLayer({
-  source: new TileWMS({
-    url: 'http://localhost:8080/geoserver/melita/wms',
-    params: {'LAYERS': 'melita:potential_coverage_test'}, // for tiled WMS add ", 'TILED': true"
-    serverType: 'geoserver',
-    transition: 0,
-  })
-});
-// 02 1 5 Active Coverage as WFS
+// 02 1 4 Active Coverage as WFS
 const activeCoverageWFS = new VectorLayer({
   source: new VectorSource({
     format: new GeoJSON(),
@@ -166,18 +164,26 @@ const activeCoverageWFS = new VectorLayer({
     }),
   style: activeCoverageStyle
 });
-// 02 1 6 Active Coverage as WMS
-const activeCoverageWMS = new TileLayer({
-  source: new TileWMS({
-    url: 'http://localhost:8080/geoserver/melita/wms',
-    params: {'LAYERS': 'melita:active_coverage'}, // for tiled WMS add ", 'TILED': true"
-    serverType: 'geoserver',
-    transition: 0,
-  })
+// 02 1 5 active coverage as Vector Tile Layer
+const activeCoverageMVT = new VectorTileLayer({
+  source: new VectorTileSource({
+    format: new MVT(),
+    url: 
+    'http://localhost:8080/geoserver/gwc/service/tms/1.0.0/melita%3Aactive_coverage@EPSG%3A3857@pbf/{z}/{x}/{-y}.pbf',
+    maxZoom: 21,
+  }),
+  style: activeCoverageStyle
 });
-
-// 02 2 Raster layers
-// 02 2 1 active coverage
+// 02 1 6 potential coverage as Vector Tile Layer
+const potentialCoverageMVT = new VectorTileLayer({
+  source: new VectorTileSource({
+    format: new MVT(),
+    url: 
+    'http://localhost:8080/geoserver/gwc/service/tms/1.0.0/melita%3Apotential_coverage_test@EPSG%3A3857@pbf/{z}/{x}/{-y}.pbf',
+    maxZoom: 21,
+  }),
+  style: potentialCoverageStyle
+});
 
 
 // put all on a map
@@ -185,9 +191,11 @@ new Map({
   target: 'map',
   layers: [
       cartoLightAll,
-      potentialCoverageWFS,
-      activeCoverageWFS,
-      gatewayLocationsWFS
+      potentialCoverageMVT,
+      activeCoverageMVT,
+//      potentialCoverageWFS,
+//      activeCoverageWFS,
+//      gatewayLocationsWFS
   ],
   view: new View({
     center: melitaWebMercator,

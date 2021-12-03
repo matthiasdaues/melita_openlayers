@@ -14,6 +14,7 @@ import GeoJSON from 'ol/format/GeoJSON';
 
 // controls
 import {defaults as defaultControls} from 'ol/control';
+import ScaleLine from 'ol/control/ScaleLine';
 import MousePosition from 'ol/control/MousePosition';
 
 // sources
@@ -203,5 +204,5 @@ new Map({
   }),
 });
 
-map.addControl(new ol.control.LayerSwitcher);
+map.addControl(new ScaleLine());
 

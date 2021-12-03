@@ -22,6 +22,14 @@
   </head>
   <body>
     <div id="map"></div>
+    <div class="options" >
+      <ul><li>
+        Operation:
+        <select id="operation" onchange="setOperation(this.value);">
+          <option value="multiply">multiply</option>
+        </select>
+      </li></ul>
+    </div>
     <script type="module" src="./main.js"></script>
   </body>
 </html>

@@ -208,9 +208,12 @@ new Map({
   }),
 });
 
+var val = multiply;
 var filter;
-function setOperation(multiply) {
-  filter = new ol.filter.CSS({ blend: multiply });
+function setOperation(val) {
+  console.log(val)
+  if (filter) clc.removeFilter(filter);
+  filter = new ol.filter.CSS({ blend: val });
   clc.addFilter(filter);
 }
 

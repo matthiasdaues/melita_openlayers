@@ -204,5 +204,5 @@ new Map({
   }),
 });
 
-map.addControl(new ScaleLine());
+
 

@@ -153,7 +153,8 @@ const potentialCoverageWFS = new VectorLayer({
         'version=1.1.0&request=GetFeature&typename=melita:potential_coverage_test&' +
         'outputFormat=application/json&srsname=EPSG:3857&'
     }),
-  style: potentialCoverageStyle
+  style: potentialCoverageStyle,
+  className: 'clc' 
 });
 // 02 1 4 Active Coverage as WFS
 const activeCoverageWFS = new VectorLayer({
@@ -163,7 +164,8 @@ const activeCoverageWFS = new VectorLayer({
         'version=1.1.0&request=GetFeature&typename=melita:active_coverage&' +
         'outputFormat=application/json&srsname=EPSG:3857&'
     }),
-  style: activeCoverageStyle
+  style: activeCoverageStyle,
+  className: 'clc' 
 });
 // 02 1 5 active coverage as Vector Tile Layer
 const activeCoverageMVT = new VectorTileLayer({
@@ -173,7 +175,8 @@ const activeCoverageMVT = new VectorTileLayer({
     'http://localhost:8080/geoserver/gwc/service/tms/1.0.0/melita%3Aactive_coverage@EPSG%3A3857@pbf/{z}/{x}/{-y}.pbf',
     maxZoom: 21,
   }),
-  style: activeCoverageStyle
+  style: activeCoverageStyle,
+  className: 'clc' 
 });
 // 02 1 6 potential coverage as Vector Tile Layer
 const potentialCoverageMVT = new VectorTileLayer({
@@ -183,7 +186,8 @@ const potentialCoverageMVT = new VectorTileLayer({
     'http://localhost:8080/geoserver/gwc/service/tms/1.0.0/melita%3Apotential_coverage_test@EPSG%3A3857@pbf/{z}/{x}/{-y}.pbf',
     maxZoom: 21,
   }),
-  style: potentialCoverageStyle
+  style: potentialCoverageStyle,
+  className: 'clc' 
 });
 
 
@@ -204,5 +208,11 @@ new Map({
   }),
 });
 
-
+var filter;
+function setOperation(val) {
+  console.log(val)
+  if (filter) clc.removeFilter(filter);
+  filter = new ol.filter.CSS({ blend: val });
+  clc.addFilter(filter);
+}
 

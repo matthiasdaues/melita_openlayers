@@ -202,3 +202,6 @@ new Map({
     zoom: 6,
   }),
 });
+
+map.addControl(new ol.control.LayerSwitcher);
+

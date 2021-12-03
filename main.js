@@ -208,7 +208,6 @@ new Map({
   }),
 });
 
-var val = multiply;
 var filter;
 function setOperation(val) {
   console.log(val)

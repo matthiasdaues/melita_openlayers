@@ -205,7 +205,7 @@ new Map({
 });
 
 //First get the DOM Element of the layer   
-var div = document.getElementById(buffer_layer.id);
+var div = document.getElementById(potentialCoverageMVT.id);
 
 //Then get the canvas element;
 //it returns an array, so we will take the first index only

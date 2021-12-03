@@ -209,10 +209,8 @@ new Map({
 });
 
 var filter;
-function setOperation(val) {
-  console.log(val)
-  if (filter) clc.removeFilter(filter);
-  filter = new ol.filter.CSS({ blend: val });
+function setOperation(multiply) {
+  filter = new ol.filter.CSS({ blend: multiply });
   clc.addFilter(filter);
 }
 

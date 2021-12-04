@@ -187,7 +187,7 @@ const potentialCoverageMVT = new VectorTileLayer({
     maxZoom: 21,
   }),
   style: potentialCoverageStyle,
-  "className": "multiply"
+  "className": "blend"
 });
 
 
@@ -209,7 +209,7 @@ new Map({
 });
 
 //First get the DOM Element of the layer   
-var div = document.getElementByClass(multiply.className);
+var div = document.getElementByClass(blend.className);
 
 //Then get the canvas element;
 //it returns an array, so we will take the first index only

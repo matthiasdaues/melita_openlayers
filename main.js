@@ -209,7 +209,7 @@ new Map({
 });
 
 //First get the DOM Element of the layer   
-var div = document.getElementByClass(potentialCoverageMVT.className);
+var div = document.getElementByClass(multiply.className);
 
 //Then get the canvas element;
 //it returns an array, so we will take the first index only

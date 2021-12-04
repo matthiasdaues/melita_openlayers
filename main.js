@@ -187,7 +187,8 @@ const potentialCoverageMVT = new VectorTileLayer({
     maxZoom: 21,
   }),
   style: potentialCoverageStyle,
-  "className": "multiply ol-layer"
+  "className": "multiply ol-layer",
+  "id": "multiply"
 });
 
 
@@ -209,11 +210,11 @@ new Map({
 });
 
 //First get the DOM Element of the layer   
-var div = document.getElementById(potentialCoverageMVT.id);
+var div = asd
 
 //Then get the canvas element;
 //it returns an array, so we will take the first index only
-var canvas = div.getElementsByTagName("canvas")[0];
+var canvas = div.multiply;
 var context = canvas.getContext("2d");
 
 //Now set the blending mode

@@ -209,7 +209,7 @@ new Map({
 });
 
 //First get the DOM Element of the layer   
-var div = document.getElementByClass(blend.className);
+var div = document.getElementByClass("blend");
 
 //Then get the canvas element;
 //it returns an array, so we will take the first index only
@@ -217,7 +217,7 @@ var canvas = div.getElementsByTagName("canvas")[0];
 var context = canvas.getContext("2d");
 
 //Now set the blending mode
-context.globalCompositeOperation = "multiply";
+canvas.globalCompositeOperation = "multiply";
 
 //blending mode can be replaced with normal | multiply | screen | overlay | darken |
 //lighten | color-dodge | color-burn | hard-light | soft-light | difference | exclusion | 

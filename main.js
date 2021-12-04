@@ -206,6 +206,6 @@ new Map({
   })
 });
 
-map.on('precompose', function(evt) {
+potentialCoverageMVT.on('precompose', function(evt) {
   evt.context.globalCompositeOperation = "multiply";
 });

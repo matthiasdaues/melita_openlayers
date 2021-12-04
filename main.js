@@ -205,6 +205,6 @@ new Map({
   })
 });
 
-potentialCoverageMVT.on('precompose', function(evt) {
+vectorTileLayer.on('precompose', function(evt) {
   evt.context.globalCompositeOperation = "multiply";
 });

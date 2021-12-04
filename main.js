@@ -101,14 +101,14 @@ const potentialCoverageStyle = new Style({
   stroke: new Stroke({color: 'rgba( 42, 177, 184, 1.00 )', width: 0.5})
 });
 // 01 2 2 2 active coverage
-const active120 = new Style({ fill: new Fill({color: 'rgba( 107, 176, 175, 0.55 )'})})
-const active110 = new Style({ fill: new Fill({color: 'rgba( 171, 221, 164, 0.55 )'})})
-const active100 = new Style({ fill: new Fill({color: 'rgba( 213, 238, 178, 0.55 )'})})
-const active90 = new Style({ fill: new Fill({color: 'rgba( 255, 255, 191, 0.55 )'})})
-const active80 = new Style({ fill: new Fill({color: 'rgba( 254, 215, 144, 0.55 )'})})
-const active70 = new Style({ fill: new Fill({color: 'rgba( 253, 174, 97, 0.55 )'})})
-const active60 = new Style({ fill: new Fill({color: 'rgba( 234, 99, 62, 0.55 )'})})
-const active50 = new Style({ fill: new Fill({color: 'rgba( 215, 25, 28, 0.55 )'})})
+const active120 = new Style({ fill: new Fill({color: 'rgba( 107, 176, 175, 1 )'})})
+const active110 = new Style({ fill: new Fill({color: 'rgba( 171, 221, 164, 1 )'})})
+const active100 = new Style({ fill: new Fill({color: 'rgba( 213, 238, 178, 1 )'})})
+const active90 = new Style({ fill: new Fill({color: 'rgba( 255, 255, 191, 1 )'})})
+const active80 = new Style({ fill: new Fill({color: 'rgba( 254, 215, 144, 1 )'})})
+const active70 = new Style({ fill: new Fill({color: 'rgba( 253, 174, 97, 1 )'})})
+const active60 = new Style({ fill: new Fill({color: 'rgba( 234, 99, 62, 1 )'})})
+const active50 = new Style({ fill: new Fill({color: 'rgba( 215, 25, 28, 1 )'})})
 const activeCoverageStyle = function (feature) {
   const styleTable = {
     "-120": active120,
@@ -174,7 +174,9 @@ const activeCoverageMVT = new VectorTileLayer({
     'http://localhost:8080/geoserver/gwc/service/tms/1.0.0/melita%3Aactive_coverage@EPSG%3A3857@pbf/{z}/{x}/{-y}.pbf',
     maxZoom: 21,
   }),
-  style: activeCoverageStyle
+  style: activeCoverageStyle,
+  "className": "multiply ol-layer"
+
 });
 // 02 1 6 potential coverage as Vector Tile Layer
 const potentialCoverageMVT = new VectorTileLayer({
@@ -185,7 +187,7 @@ const potentialCoverageMVT = new VectorTileLayer({
     maxZoom: 21,
   }),
   style: potentialCoverageStyle,
-  "className": "multiply",
+  "className": "multiply ol-layer"
 });
 
 

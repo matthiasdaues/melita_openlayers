@@ -174,7 +174,8 @@ const activeCoverageMVT = new VectorTileLayer({
     'http://localhost:8080/geoserver/gwc/service/tms/1.0.0/melita%3Aactive_coverage@EPSG%3A3857@pbf/{z}/{x}/{-y}.pbf',
     maxZoom: 21,
   }),
-  style: activeCoverageStyle
+  style: activeCoverageStyle,
+  "className": "blend"
 
 });
 // 02 1 6 potential coverage as Vector Tile Layer
@@ -185,8 +186,10 @@ const potentialCoverageMVT = new VectorTileLayer({
     'http://localhost:8080/geoserver/gwc/service/tms/1.0.0/melita%3Apotential_coverage_test@EPSG%3A3857@pbf/{z}/{x}/{-y}.pbf',
     maxZoom: 21,
   }),
-  style: potentialCoverageStyle
+  style: potentialCoverageStyle,
+  "className": "blend"
 });
+
 
 // put all on a map
 new Map({
@@ -202,9 +205,22 @@ new Map({
   view: new View({
     center: melitaWebMercator,
     zoom: 6,
-  })
+  }),
 });
 
-vectorTileLayer.on('precompose', function(evt) {
-  evt.context.globalCompositeOperation = "multiply";
-});
+//First get the DOM Element of the layer   
+var div = document.getElementByClass("blend");
+
+//Then get the canvas element;
+//it returns an array, so we will take the first index only
+var canvas = div.getElementsByTagName("canvas")[0];
+var context = canvas.getContext("2d");
+
+//Now set the blending mode
+canvas.globalCompositeOperation = "multiply";
+
+//blending mode can be replaced with normal | multiply | screen | overlay | darken |
+//lighten | color-dodge | color-burn | hard-light | soft-light | difference | exclusion | 
+//hue | saturation | color | luminosity
+
+

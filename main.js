@@ -189,7 +189,6 @@ const potentialCoverageMVT = new VectorTileLayer({
   style: potentialCoverageStyle
 });
 
-
 // put all on a map
 new Map({
   target: 'map',
@@ -204,12 +203,9 @@ new Map({
   view: new View({
     center: melitaWebMercator,
     zoom: 6,
-  }),
-  beforeRender: function(_args) {
-    var canvas = document.getElementsByTagName('canvas')[0];
-    var context = canvas.getContext("2d");
+  })
+});
 
-    //Now set the blending mode
-    context.globalCompositeOperation = "multiply";
-}
+map.on('precompose', function(evt) {
+  evt.context.globalCompositeOperation = "multiply";
 });

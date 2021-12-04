@@ -174,8 +174,7 @@ const activeCoverageMVT = new VectorTileLayer({
     'http://localhost:8080/geoserver/gwc/service/tms/1.0.0/melita%3Aactive_coverage@EPSG%3A3857@pbf/{z}/{x}/{-y}.pbf',
     maxZoom: 21,
   }),
-  style: activeCoverageStyle,
-  "className": "multiply ol-layer"
+  style: activeCoverageStyle
 
 });
 // 02 1 6 potential coverage as Vector Tile Layer

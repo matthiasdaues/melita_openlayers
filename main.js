@@ -217,7 +217,7 @@ var canvas = div.getElementsByTagName("canvas")[0];
 var context = canvas.getContext("2d");
 
 //Now set the blending mode
-canvas.globalCompositeOperation = "multiply";
+div.globalCompositeOperation = "multiply";
 
 //blending mode can be replaced with normal | multiply | screen | overlay | darken |
 //lighten | color-dodge | color-burn | hard-light | soft-light | difference | exclusion | 

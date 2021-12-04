@@ -187,7 +187,7 @@ const potentialCoverageMVT = new VectorTileLayer({
     maxZoom: 21,
   }),
   style: potentialCoverageStyle,
-  "className": "multiply ol-layer"
+  "className": "multiply"
 });
 
 

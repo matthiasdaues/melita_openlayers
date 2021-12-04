@@ -186,8 +186,7 @@ const potentialCoverageMVT = new VectorTileLayer({
     'http://localhost:8080/geoserver/gwc/service/tms/1.0.0/melita%3Apotential_coverage_test@EPSG%3A3857@pbf/{z}/{x}/{-y}.pbf',
     maxZoom: 21,
   }),
-  style: potentialCoverageStyle,
-  "className": "blend"
+  style: potentialCoverageStyle
 });
 
 
@@ -206,21 +205,11 @@ new Map({
     center: melitaWebMercator,
     zoom: 6,
   }),
+  beforeRender: function(_args) {
+    var canvas = document.getElementsByTagName('canvas')[0];
+    var context = canvas.getContext("2d");
+
+    //Now set the blending mode
+    context.globalCompositeOperation = "multiply";
+}
 });
-
-//First get the DOM Element of the layer   
-var div = document.getElementByClass("blend");
-
-//Then get the canvas element;
-//it returns an array, so we will take the first index only
-var canvas = div.getElementsByTagName("canvas")[0];
-var context = canvas.getContext("2d");
-
-//Now set the blending mode
-canvas.globalCompositeOperation = "multiply";
-
-//blending mode can be replaced with normal | multiply | screen | overlay | darken |
-//lighten | color-dodge | color-burn | hard-light | soft-light | difference | exclusion | 
-//hue | saturation | color | luminosity
-
-

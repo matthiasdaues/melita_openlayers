@@ -41,6 +41,7 @@ import {fromLonLat} from 'ol/proj';
 // styles
 import {Circle as CircleStyle, Fill, Stroke, Style} from 'ol/style';
 import { red } from 'nanocolors';
+import { multiply } from 'ol/transform';
 
 
 
@@ -183,7 +184,8 @@ const potentialCoverageMVT = new VectorTileLayer({
     'http://localhost:8080/geoserver/gwc/service/tms/1.0.0/melita%3Apotential_coverage_test@EPSG%3A3857@pbf/{z}/{x}/{-y}.pbf',
     maxZoom: 21,
   }),
-  style: potentialCoverageStyle
+  style: potentialCoverageStyle,
+  "className": "multiply",
 });
 
 

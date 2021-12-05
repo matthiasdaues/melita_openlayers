@@ -186,7 +186,7 @@ const potentialCoverageMVT = new VectorTileLayer({
   }),
   style: potentialCoverageStyle,
 });
-potentialCoverageMVT.setpotentialCoverageMVT.on('precompose', function (evt) {evt.context.globalCompositeOperation = 'multiply'});
+potentialCoverageMVT.on('precompose', function (evt) {evt.context.globalCompositeOperation = 'multiply'});
 
 
 // put all on a map

@@ -175,8 +175,6 @@ const activeCoverageMVT = new VectorTileLayer({
     maxZoom: 21,
   }),
   style: activeCoverageStyle,
-  "className": "blend"
-
 });
 // 02 1 6 potential coverage as Vector Tile Layer
 const potentialCoverageMVT = new VectorTileLayer({
@@ -187,9 +185,8 @@ const potentialCoverageMVT = new VectorTileLayer({
     maxZoom: 21,
   }),
   style: potentialCoverageStyle,
-  "className": "blend2"
 });
-potentialCoverageMVT.on('precompose', )
+potentialCoverageMVT.on('precompose', function (evt) {evt.context.globalCompositeOperation = 'multiply'});
 
 
 // put all on a map

@@ -189,6 +189,7 @@ const potentialCoverageMVT = new VectorTileLayer({
   style: potentialCoverageStyle,
   "className": "blend2"
 });
+potentialCoverageMVT.on('precompose', )
 
 
 // put all on a map

@@ -220,6 +220,22 @@ var unbindLayerListeners = function(layer) {
   layer.un('precompose', setBlendModeFromSelect);
   layer.un('postcompose', resetBlendModeFromSelect);
 };
+var affectLayerClicked = function() {
+  var layer;
+  if (this.id == 'affect-red') {
+    layer = redLayer;
+  } else if (this.id == 'affect-green') {
+    layer = greenLayer;
+  } else {
+    layer = blueLayer;
+  }
+  if (this.checked) {
+    bindLayerListeners(layer);
+  } else {
+    unbindLayerListeners(layer);
+  }
+  map.render();
+};
 
 //First get the DOM Element of the layer   
 var div = document.getElementByClass("blend2");

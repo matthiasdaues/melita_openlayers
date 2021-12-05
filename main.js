@@ -187,7 +187,7 @@ const potentialCoverageMVT = new VectorTileLayer({
     maxZoom: 21,
   }),
   style: potentialCoverageStyle,
-  "className": "blend"
+  "className": "blend2"
 });
 
 
@@ -209,15 +209,15 @@ new Map({
 });
 
 //First get the DOM Element of the layer   
-var div = document.getElementByClass("blend");
+var div = document.getElementByClass("blend2");
 
 //Then get the canvas element;
 //it returns an array, so we will take the first index only
-var canvas = div.getElementsByTagName("canvas")[0];
-var context = canvas.getContext("2d");
+var canvas = div.getElementsByTagName("canvas");
+// var context = canvas.getContext("2d");
 
 //Now set the blending mode
-div.globalCompositeOperation = "multiply";
+canvas.globalCompositeOperation = "multiply";
 
 //blending mode can be replaced with normal | multiply | screen | overlay | darken |
 //lighten | color-dodge | color-burn | hard-light | soft-light | difference | exclusion | 

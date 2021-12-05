@@ -186,7 +186,6 @@ const potentialCoverageMVT = new VectorTileLayer({
   }),
   style: potentialCoverageStyle,
 });
-potentialCoverageMVT.on('precompose', function (evt) {evt.context.globalCompositionOperation = 'multiply'});
 
 
 // put all on a map
@@ -205,6 +204,11 @@ new Map({
     zoom: 6,
   }),
 });
+
+
+var setBlendModeFromSelect = function(evt) {
+  evt.context.globalCompositeOperation = 'multiply';
+};
 
 //First get the DOM Element of the layer   
 var div = document.getElementByClass("blend2");

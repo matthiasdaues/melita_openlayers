@@ -236,9 +236,5 @@ var select = new Select({
 map.addInteraction(select);
 
 // Select control
-var popup = new PopupFeature({
-  popupClass: 'default anim',
-  select: select,
-  canFix: true
-});
-map.addOverlay (popup);
+var popup = new PopupFeature({});
+map.addOverlay(popup);

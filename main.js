@@ -2,6 +2,7 @@
 
 // css
 import './style.css';
+import "ol-ext/dist/ol-ext.css";
 
 // fundaments
 import {Feature, Map, View} from 'ol';
@@ -16,6 +17,7 @@ import GeoJSON from 'ol/format/GeoJSON';
 import {defaults as defaultControls, OverviewMap, ZoomToExtent} from 'ol/control';
 import ScaleLine from 'ol/control/ScaleLine';
 import MousePosition from 'ol/control/MousePosition';
+import Legend from 'ol-ext/control/Legend';
 
 // sources
 import VectorSource from 'ol/source/Vector';
@@ -213,7 +215,9 @@ var scaleline = new ScaleLine({});
 map.addControl(scaleline);
 // add zoom to extent
 var zoom2extent = new ZoomToExtent({});
-map.addControl(zoom2extent); 
-
+map.addControl(zoom2extent);
+// add legend  
+var legend = new Legend({});
+map.addControl(legend);
 
 

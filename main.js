@@ -226,19 +226,4 @@ var affectLayerClicked = function() {
   map.render();
 };
 
-//First get the DOM Element of the layer   
-var div = document.getElementByClass("blend2");
-
-//Then get the canvas element;
-//it returns an array, so we will take the first index only
-var canvas = div.getElementsByTagName("canvas");
-// var context = canvas.getContext("2d");
-
-//Now set the blending mode
-canvas.globalCompositeOperation = "multiply";
-
-//blending mode can be replaced with normal | multiply | screen | overlay | darken |
-//lighten | color-dodge | color-burn | hard-light | soft-light | difference | exclusion | 
-//hue | saturation | color | luminosity
-
 

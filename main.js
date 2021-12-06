@@ -196,7 +196,6 @@ const potentialCoverageMVT = new VectorTileLayer({
   }),
   style: potentialCoverageStyle, 
 });
-interactions: Select,
 potentialCoverageMVT.setProperties({
   hello: "hello",
   world: "World!"
@@ -216,6 +215,7 @@ var map = new Map({
     center: melitaWebMercator,
     zoom: 6,
   }),
+  //interaction: ol.ininteraction.defaults(),
 });
 
 

@@ -211,3 +211,14 @@ new Map({
 });
 
 
+// Define a new legend
+var legend = new ol.legend.Legend({
+  title: 'Legend',
+  style: getFeatureStyle
+})
+var legendCtrl = new ol.control.Legend({ 
+  legend: legend,
+  collapsed: false
+});
+
+

@@ -1,4 +1,4 @@
-// requirements
+  // requirements
 
 import './style.css';
 import {Feature, Map, View} from 'ol';

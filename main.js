@@ -223,4 +223,27 @@ map.addControl(zoom2extent);
 var legend = new Legend({});
 map.addControl(legend);
 
+var popupext = new PopupFeature({
+  popupClass: "default anim",
+  select: select,
+  // visible: true,
+  canFix: true
+  /*
+  template: {
+      title:
+
+          function (f) {
+              ' (' + f.get('id') + ')';
+          },
+      attributes:
+      {
+         'MonitoringStation': { title: 'beast' },
+
+      }
+      */
+});
+map.addOverlay(popupext);
+console.log(PopupFeature);
+
+
 

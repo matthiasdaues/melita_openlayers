@@ -225,7 +225,7 @@ map.addControl(zoom2extent);
 
 
 // Select  interaction
-var select = new ol.interaction.Select({
+var select = new Select({
   hitTolerance: 5,
   multi: true,
   condition: ol.events.condition.singleClick

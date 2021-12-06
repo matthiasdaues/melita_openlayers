@@ -19,6 +19,7 @@ import ScaleLine from 'ol/control/ScaleLine';
 import MousePosition from 'ol/control/MousePosition';
 import Legend from 'ol-ext/control/Legend';
 
+
 // sources
 import VectorSource from 'ol/source/Vector';
 import XYZ from 'ol/source/XYZ';
@@ -45,6 +46,8 @@ import {Circle as CircleStyle, Fill, Stroke, Style} from 'ol/style';
 import { red } from 'nanocolors';
 import { multiply } from 'ol/transform';
 
+// overlays und popups
+import PopupFeature from "ol-ext/overlay/PopupFeature";
 
 
 // 00 define basemaps

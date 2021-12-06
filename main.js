@@ -220,6 +220,6 @@ var legendCtrl = new ol.control.Legend({
   legend: legend,
   collapsed: false
 });
-
+Map.addControl(legendCtrl);
 
 

@@ -233,7 +233,7 @@ var select = new ol.interaction.Select({
 map.addInteraction(select);
 
 // Select control
-var popup = new ol.Overlay.PopupFeature({
+var popup = new PopupFeature({
   popupClass: 'default anim',
   select: select,
   canFix: true

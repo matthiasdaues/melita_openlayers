@@ -180,6 +180,7 @@ const activeCoverageMVT = new VectorTileLayer({
 });
 // 02 1 6 potential coverage as Vector Tile Layer
 const potentialCoverageMVT = new VectorTileLayer({
+  className: 'potentialCoverageMVT',
   source: new VectorTileSource({
     format: new MVT(),
     url: 
@@ -187,7 +188,7 @@ const potentialCoverageMVT = new VectorTileLayer({
     maxZoom: 21,
   }),
   style: potentialCoverageStyle, 
-  className: 'potentialCoverageMVT' 
+
 });
 
 
@@ -207,14 +208,5 @@ new Map({
     zoom: 6,
   }),
 });
-
-var filter;
-function setOperation(val) {
-  val = 'multiply';
-  if (filter) clc.removeFilter(filter);
-  filter = new ol.filter.CSS({ blend: val });
-  clc.addFilter(filter);
-}
-potentialCoverageMVT.addFilter(filter);
 
 

@@ -99,7 +99,7 @@ const locationStyle = function (feature) {
 // 01 2 2 coverage styles
 // 01 2 2 1 potential coverage over all available locations
 const potentialCoverageStyle = new Style({
-  fill: new Fill({color: 'rgba( 42, 177, 184, 1 )'}),
+  fill: new Fill({color: 'rgba( 42, 177, 184, 0.5 )'}),
   stroke: new Stroke({color: 'rgba( 42, 177, 184, 1.00 )', width: 0.5})
 });
 // 01 2 2 2 active coverage

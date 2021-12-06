@@ -207,23 +207,7 @@ new Map({
 
 
 var setBlendModeFromSelect = function(evt) {
-  evt.context.globalCompositeOperation = 'multiply';
-};
-var affectLayerClicked = function() {
-  var layer;
-  if (this.id == 'affect-red') {
-    layer = redLayer;
-  } else if (this.id == 'affect-green') {
-    layer = greenLayer;
-  } else {
-    layer = blueLayer;
-  }
-  if (this.checked) {
-    bindLayerListeners(layer);
-  } else {
-    unbindLayerListeners(layer);
-  }
-  map.render();
+  evt.context.globalCompositeOperation = multiply;
 };
 
 

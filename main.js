@@ -209,17 +209,6 @@ new Map({
 var setBlendModeFromSelect = function(evt) {
   evt.context.globalCompositeOperation = 'multiply';
 };
-var resetBlendModeFromSelect = function(evt) {
-  evt.context.globalCompositeOperation = 'source-over';
-};
-var bindLayerListeners = function(layer) {
-  layer.on('precompose', setBlendModeFromSelect);
-  layer.on('postcompose', resetBlendModeFromSelect);
-};
-var unbindLayerListeners = function(layer) {
-  layer.un('precompose', setBlendModeFromSelect);
-  layer.un('postcompose', resetBlendModeFromSelect);
-};
 var affectLayerClicked = function() {
   var layer;
   if (this.id == 'affect-red') {

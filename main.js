@@ -46,6 +46,9 @@ import {Circle as CircleStyle, Fill, Stroke, Style} from 'ol/style';
 import { red } from 'nanocolors';
 import { multiply } from 'ol/transform';
 
+// interactions
+import Select from 'ol/interaction/Select';
+
 // overlays und popups
 import PopupFeature from "ol-ext/overlay/PopupFeature";
 
@@ -193,6 +196,7 @@ const potentialCoverageMVT = new VectorTileLayer({
   }),
   style: potentialCoverageStyle, 
 });
+interactions: Select,
 potentialCoverageMVT.setProperties({
   hello: "hello",
   world: "World!"

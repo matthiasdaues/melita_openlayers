@@ -222,12 +222,9 @@ map.addControl(scaleline);
 // add zoom to extent
 var zoom2extent = new ZoomToExtent({});
 map.addControl(zoom2extent);
-// add legend  
-var legend = new Legend({});
-map.addControl(legend);
 
 
-vector.getSource().addFeature(f);
+potentialCoverageMVT.getSource().addFeature(f);
 var select = new Select({
   hitTolerance: 1,
   multi: true,

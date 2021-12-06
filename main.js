@@ -170,6 +170,7 @@ const activeCoverageWFS = new VectorLayer({
 });
 // 02 1 5 active coverage as Vector Tile Layer
 const activeCoverageMVT = new VectorTileLayer({
+  className: 'activeCoverageMVT',
   source: new VectorTileSource({
     format: new MVT(),
     url: 
@@ -198,7 +199,7 @@ new Map({
   layers: [
       cartoLightAll,
       potentialCoverageMVT,
-      activeCoverageMVT,
+//      activeCoverageMVT,
 //      potentialCoverageWFS,
 //      activeCoverageWFS,
 //      gatewayLocationsWFS

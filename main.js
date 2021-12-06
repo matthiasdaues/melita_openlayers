@@ -3,8 +3,6 @@
 // css
 import './style.css';
 
-
-
 // fundaments
 import {Feature, Map, View} from 'ol';
 
@@ -15,9 +13,10 @@ import {bbox as bboxStrategy} from 'ol/loadingstrategy';
 import GeoJSON from 'ol/format/GeoJSON';
 
 // controls
-import {defaults as defaultControls} from 'ol/control';
+import {defaults as defaultControls, OverviewMap, ZoomToExtent} from 'ol/control';
 import ScaleLine from 'ol/control/ScaleLine';
 import MousePosition from 'ol/control/MousePosition';
+import Legend from 'ol-ext/control/Legend';
 
 // sources
 import VectorSource from 'ol/source/Vector';
@@ -194,14 +193,12 @@ const potentialCoverageMVT = new VectorTileLayer({
 
 
 // put all on a map
-new Map({
+var map = new Map({
   target: 'map',
   layers: [
       cartoLightAll,
       potentialCoverageMVT,
 //      activeCoverageMVT,
-//      potentialCoverageWFS,
-//      activeCoverageWFS,
 //      gatewayLocationsWFS
   ],
   view: new View({
@@ -211,53 +208,14 @@ new Map({
 });
 
 
-  // Style function
-  function getFeatureStyle (feature) {
-    var st= [];
-    // Shadow style
-    st.push (new ol.style.Style ({
-      image: new ol.style.Shadow ({
-        radius: 15
-      })
-    }));
-    var st1= [];
-    // Font style
-    st.push ( new ol.style.Style ({
-      image: new ol.style.FontSymbol({
-        form: "marker", 
-        glyph: 'fa-car', 
-        radius: 15, 
-        offsetY: -15,
-        fontSize: .7,
-        color: '#fff',
-        fill: new ol.style.Fill ({
-          color: 'blue'
-        }),
-        stroke: new ol.style.Stroke ({
-          color: '#fff',
-          width: 2
-        })
-      }),
-      stroke: new ol.style.Stroke ({
-        width: 5,
-        color: '#f00'
-      }),
-      fill: new ol.style.Fill ({
-        color: [255, 0, 0, 0.6]
-      })
-    }));
-    return st;
-  }
+// add controls and tools
+// add scaleline
+var scaleline = new ScaleLine({});
+map.addControl(scaleline);
+// add zoom to extent
+var zoom2extent = new ZoomToExtent({});
+map.addControl(zoom2extent);
+// add legend  
 
-// Define a new legend
-var legend = new ol.legend.Legend({
-  title: 'Legend',
-  style: getFeatureStyle
-})
-var legendCtrl = new ol.control.Legend({ 
-  legend: legend,
-  collapsed: false
-});
-Map.addControl(legendCtrl);
 
 

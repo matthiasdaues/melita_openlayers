@@ -185,7 +185,7 @@ const potentialCoverageMVT = new VectorTileLayer({
     maxZoom: 21,
   }),
   style: potentialCoverageStyle, 
-  className: 'clc' 
+  className: 'potentialCoverageMVT' 
 });
 
 
@@ -206,13 +206,12 @@ new Map({
   }),
 });
 
-var layer = potentialCoverageMVT;
-var setBlendModeFromSelect = function(evt) {
-  evt.context.globalCompositeOperation = 'multiply';
-};
-var resetBlendModeFromSelect = function(evt) {
-  evt.context.globalCompositeOperation = 'source-over';
-};
-setBlendModeFromSelect(layer);
-map.render();
+
+var filter;
+function setOperation(multiply) {
+  console.log(multiply)
+  if (filter) potentialCoverageMVT.removeFilter(filter);
+  filter = new ol.filter.CSS({ blend: 'multiply' });
+  potentialCoverageMVT.addFilter(filter);
+}
 

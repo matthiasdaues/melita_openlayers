@@ -215,4 +215,3 @@ var resetBlendModeFromSelect = function(evt) {
 setBlendModeFromSelect(layer);
 map.render();
 
-

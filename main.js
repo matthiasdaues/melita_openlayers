@@ -212,11 +212,7 @@ var setBlendModeFromSelect = function(evt) {
 var resetBlendModeFromSelect = function(evt) {
   evt.context.globalCompositeOperation = 'source-over';
 };
-var bindLayerListeners = function(layer) {
-  layer.on('precompose', setBlendModeFromSelect);
-  layer.on('postcompose', resetBlendModeFromSelect);
-};
 setBlendModeFromSelect(layer);
-Map.render();
+map.render();
 
 

@@ -192,7 +192,10 @@ const potentialCoverageMVT = new VectorTileLayer({
     maxZoom: 21,
   }),
   style: potentialCoverageStyle, 
-
+});
+potentialCoverageMVT.setProperties({
+  hello: "hello",
+  world: "World!"
 });
 
 

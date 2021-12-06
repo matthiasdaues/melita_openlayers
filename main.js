@@ -205,19 +205,17 @@ new Map({
   }),
 });
 
-
+var layer = potentialCoverageMVT;
 var setBlendModeFromSelect = function(evt) {
   evt.context.globalCompositeOperation = 'multiply';
 };
 var resetBlendModeFromSelect = function(evt) {
   evt.context.globalCompositeOperation = 'source-over';
 };
-var bindLayerListeners = function(potentialCoverageMVT) {
-  potentialCoverageMVT.on('precompose', setBlendModeFromSelect);
-  potentialCoverageMVT.on('postcompose', resetBlendModeFromSelect);
+var bindLayerListeners = function(layer) {
+  layer.on('precompose', setBlendModeFromSelect);
+  layer.on('postcompose', resetBlendModeFromSelect);
 };
-var unbindLayerListeners = function(potentialCoverageMVT) {
-  potentialCoverageMVT.un('precompose', setBlendModeFromSelect);
-  potentialCoverageMVT.un('postcompose', resetBlendModeFromSelect);
-};
+
+
 

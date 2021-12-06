@@ -238,4 +238,4 @@ var popup = new PopupFeature({
   select: select,
   canFix: true
 });
-map-addOverlay (popup);
+map.addOverlay (popup);

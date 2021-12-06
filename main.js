@@ -215,7 +215,6 @@ var map = new Map({
     center: melitaWebMercator,
     zoom: 6,
   }),
-  //interaction: ol.ininteraction.defaults(),
 });
 
 

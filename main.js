@@ -207,7 +207,17 @@ new Map({
 
 
 var setBlendModeFromSelect = function(evt) {
-  evt.context.globalCompositeOperation = multiply;
+  evt.context.globalCompositeOperation = 'multiply';
 };
-
+var resetBlendModeFromSelect = function(evt) {
+  evt.context.globalCompositeOperation = 'source-over';
+};
+var bindLayerListeners = function(potentialCoverageMVT) {
+  potentialCoverageMVT.on('precompose', setBlendModeFromSelect);
+  potentialCoverageMVT.on('postcompose', resetBlendModeFromSelect);
+};
+var unbindLayerListeners = function(potentialCoverageMVT) {
+  potentialCoverageMVT.un('precompose', setBlendModeFromSelect);
+  potentialCoverageMVT.un('postcompose', resetBlendModeFromSelect);
+};
 

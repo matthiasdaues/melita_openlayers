@@ -224,39 +224,10 @@ var zoom2extent = new ZoomToExtent({});
 map.addControl(zoom2extent);
 
 
-potentialCoverageMVT.getSource().addFeature(f);
-var select = new Select({
-  hitTolerance: 1,
-  multi: true,
-  condition: singleClick
-});
-
-map.addInteraction(select);
-
-console.log("ok", typeof select.on === "function");
-
-
-var popupext = new PopupFeature({
-  popupClass: "default anim",
-  select: select,
-  // visible: true,
-  canFix: true
-  /*
-  template: {
-      title:
-
-          function (f) {
-              ' (' + f.get('id') + ')';
-          },
-      attributes:
-      {
-         'MonitoringStation': { title: 'beast' },
-
-      }
-      */
-});
-map.addOverlay(popupext);
-console.log(PopupFeature);
-
-
-
+  // Select  interaction
+  var select = new ol.interaction.Select({
+    hitTolerance: 5,
+    multi: true,
+    condition: ol.events.condition.singleClick
+  });
+  map.addInteraction(select);

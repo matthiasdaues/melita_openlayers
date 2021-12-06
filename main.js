@@ -224,10 +224,18 @@ var zoom2extent = new ZoomToExtent({});
 map.addControl(zoom2extent);
 
 
-  // Select  interaction
-  var select = new ol.interaction.Select({
-    hitTolerance: 5,
-    multi: true,
-    condition: ol.events.condition.singleClick
-  });
-  map.addInteraction(select);
+// Select  interaction
+var select = new ol.interaction.Select({
+  hitTolerance: 5,
+  multi: true,
+  condition: ol.events.condition.singleClick
+});
+map.addInteraction(select);
+
+// Select control
+var popup = new ol.Overlay.PopupFeature({
+  popupClass: 'default anim',
+  select: select,
+  canFix: true
+});
+map-addOverlay (popup);

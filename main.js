@@ -208,7 +208,13 @@ new Map({
   }),
 });
 
-var filter = new ol.filter.CSS({ blend: 'multiply' });
+var filter;
+function setOperation(val) {
+  val = 'multiply';
+  if (filter) clc.removeFilter(filter);
+  filter = new ol.filter.CSS({ blend: val });
+  clc.addFilter(filter);
+}
 potentialCoverageMVT.addFilter(filter);
 
 

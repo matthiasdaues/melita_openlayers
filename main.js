@@ -216,6 +216,7 @@ var bindLayerListeners = function(layer) {
   layer.on('precompose', setBlendModeFromSelect);
   layer.on('postcompose', resetBlendModeFromSelect);
 };
-
+setBlendModeFromSelect(layer);
+Map.render();
 
 

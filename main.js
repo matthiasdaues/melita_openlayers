@@ -226,6 +226,14 @@ map.addControl(zoom2extent);
 var legend = new Legend({});
 map.addControl(legend);
 
+
+vector.getSource().addFeature(f);
+var select = new Select({
+  hitTolerance: 1,
+  multi: true,
+  condition: singleClick
+});
+
 map.addInteraction(select);
 
 console.log("ok", typeof select.on === "function");

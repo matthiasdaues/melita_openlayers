@@ -223,6 +223,11 @@ map.addControl(zoom2extent);
 var legend = new Legend({});
 map.addControl(legend);
 
+map.addInteraction(select);
+
+console.log("ok", typeof select.on === "function");
+
+
 var popupext = new PopupFeature({
   popupClass: "default anim",
   select: select,

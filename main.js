@@ -3,6 +3,8 @@
 // css
 import './style.css';
 
+
+
 // fundaments
 import {Feature, Map, View} from 'ol';
 
@@ -206,12 +208,7 @@ new Map({
   }),
 });
 
+var filter = new ol.filter.CSS({ blend: 'multiply' });
+potentialCoverageMVT.addFilter(filter);
 
-var filter;
-function setOperation(multiply) {
-  console.log(multiply)
-  if (filter) potentialCoverageMVT.removeFilter(filter);
-  filter = new ol.filter.CSS({ blend: 'multiply' });
-  potentialCoverageMVT.addFilter(filter);
-}
 

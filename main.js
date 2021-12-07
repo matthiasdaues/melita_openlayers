@@ -18,7 +18,7 @@ import {defaults as defaultControls, OverviewMap, ZoomToExtent} from 'ol/control
 import ScaleLine from 'ol/control/ScaleLine';
 import MousePosition from 'ol/control/MousePosition';
 import ol_control_Legend from 'ol-ext/control/Legend';
-import ol_legend_legend from 'ol-ext/legend/Legend';
+import ol_legend_Legend from 'ol-ext/legend/Legend';
 
 // sources
 import VectorSource from 'ol/source/Vector';
@@ -52,6 +52,7 @@ import Select from 'ol/interaction/Select';
 // overlays und popups
 import PopupFeature from "ol-ext/overlay/PopupFeature";
 import ol_legend_Item from 'ol-ext/legend/Item';
+import ol_legend_Legend from 'ol-ext/legend/Legend';
 
 
 // 00 define basemaps
@@ -227,5 +228,15 @@ map.addControl(scaleline);
 var zoom2extent = new ZoomToExtent({});
 map.addControl(zoom2extent);
 // add legend
+
+var legend = new ol_legend_Legend({
+  title: 'Legend',
+  style: getFeatureStyle
+})
+var legendCtrl = new ol_control_Legend({ 
+  legend: legend,
+  collapsed: false
+});
+map.addControl(legendCtrl);
 
 

@@ -242,7 +242,13 @@ var legend = new ol_legend_Legend({
 })
 var legendCtrl = new ol_control_Legend({ 
   legend: legend,
-  collapsed: true
+  collapsed: false,
+  collapsible: false
 });
 map.addControl(legendCtrl);
-legend.addItem({ title: 'center point', feature: f0, typeGeom: Circle, style: locationStyleActive });
+legend.addItem({ 
+  title: 'center point', 
+  feature: f0, 
+  typeGeom: Circle, 
+  style: locationStyleActive 
+});

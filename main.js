@@ -6,14 +6,15 @@ import "ol-ext/dist/ol-ext.css";
 
 // fundaments
 import {Feature, Map, View} from 'ol';
+import Point from 'ol/geom/Point';
 
 // performance
 import {bbox as bboxStrategy} from 'ol/loadingstrategy';
 
 // formats
 import GeoJSON from 'ol/format/GeoJSON';
-import Feature from 'ol/Feature';
-import Point from 'ol/geom/Point';
+
+
 
 // controls
 import {defaults as defaultControls, OverviewMap, ZoomToExtent} from 'ol/control';
@@ -204,8 +205,7 @@ potentialCoverageMVT.setProperties({
   world: "World!"
 });
 
-var f0 = new Feature(new Point(melitaWebMercator));
-vector.getSource().addFeature(f0);
+
 
 
 // put all on a map
@@ -222,6 +222,17 @@ var map = new Map({
     zoom: 6,
   }),
 });
+
+
+
+// Vector layer
+var vector = new VectorLayer({
+  source: new VectorSource()
+})
+map.addLayer(vector);
+
+var f0 = new eature(new Point(melitaWebMercator));
+vector.getSource().addFeature(f0);
 
 
 // add controls and tools

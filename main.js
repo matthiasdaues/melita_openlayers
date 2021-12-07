@@ -250,6 +250,8 @@ map.addControl(legendCtrl);
 legend.addItem({ 
   title: 'center point', 
   feature: f0, 
-  typeGeom: Circle, 
-  style: new Style()
+  typeGeom: Circle,
+    style: new Style({
+    fill: new Fill({color: 'rgba(1,1,1,1)'})
+  })
 });

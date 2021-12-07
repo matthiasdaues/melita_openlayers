@@ -202,6 +202,9 @@ potentialCoverageMVT.setProperties({
   world: "World!"
 });
 
+var f0 = new ol.Feature(new ol.geom.Point(melitaWebMercator));
+vector.getSource().addFeature(f0);
+
 
 // put all on a map
 var map = new Map({

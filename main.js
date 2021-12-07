@@ -228,7 +228,6 @@ map.addControl(scaleline);
 var zoom2extent = new ZoomToExtent({});
 map.addControl(zoom2extent);
 // add legend
-
 var legend = new ol_legend_Legend({
   title: 'Legend',
   style: getFeatureStyle

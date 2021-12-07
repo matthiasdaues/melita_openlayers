@@ -233,8 +233,7 @@ var legendCtrl = new Legend({
   collapsed: false
 });
 map.addControl(legendCtrl);
-var coverage_legend = new ol_legend_Item({
-  title: 'Coverage'
+legend.addItem({
+  
 });
-legend.addItem(coverage_legend);
 

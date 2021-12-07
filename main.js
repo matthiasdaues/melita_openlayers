@@ -238,7 +238,7 @@ var legend = new ol_legend_Legend({
   title: 'Coverage and Gateways',
   className: 'ol-legend',
   style: new Style({
-    fontSize: 8,
+    fill: new Fill({color: 'rgba(1,1,1,1)'})
   })
 })
 var legendCtrl = new ol_control_Legend({ 

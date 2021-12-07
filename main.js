@@ -255,4 +255,4 @@ legend.addItem({
     fill: new Fill({color: 'rgba(1,1,1,1)'})
   })
 });
-document.getElementById('beispielID').style.backgroundColor = 'red';
+document.getElementByClass('ol-legend').style.backgroundColor = 'red';

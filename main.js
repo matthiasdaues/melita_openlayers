@@ -17,8 +17,8 @@ import GeoJSON from 'ol/format/GeoJSON';
 import {defaults as defaultControls, OverviewMap, ZoomToExtent} from 'ol/control';
 import ScaleLine from 'ol/control/ScaleLine';
 import MousePosition from 'ol/control/MousePosition';
-import {Legend as LegendControl} from 'ol-ext/control/Legend';
-import {Legend as LegendLegend} from 'ol-ext/legend/Legend';
+import ol_control_Legend from 'ol-ext/control/Legend';
+import ol_legend_legend from 'ol-ext/legend/Legend';
 
 // sources
 import VectorSource from 'ol/source/Vector';
@@ -51,7 +51,6 @@ import Select from 'ol/interaction/Select';
 
 // overlays und popups
 import PopupFeature from "ol-ext/overlay/PopupFeature";
-import ol_legend_Legend from 'ol-ext/legend/Legend';
 import ol_legend_Item from 'ol-ext/legend/Item';
 
 

@@ -238,18 +238,18 @@ var legend = new ol_legend_Legend({
   title: 'Coverage and Gateways',
   className: 'ol-legend',
   style: new Style({
-    background: new Fill({color: 'rgba( 107, 176, 175, 1 )'}),
+    fontSize: 8,
   })
 })
 var legendCtrl = new ol_control_Legend({ 
   legend: legend,
   collapsed: false,
-  collapsible: false
+  collapsible: true
 });
 map.addControl(legendCtrl);
 legend.addItem({ 
   title: 'center point', 
   feature: f0, 
   typeGeom: Circle, 
-  style: locationStyleActive 
+  style: new Style()
 });

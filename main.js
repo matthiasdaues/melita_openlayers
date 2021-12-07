@@ -229,11 +229,11 @@ var zoom2extent = new ZoomToExtent({});
 map.addControl(zoom2extent);
 // add legend
 var legendCtrl = new Legend({
-  legend: Legend,
+  legend: legend,
   collapsed: false
 });
 map.addControl(legendCtrl);
-Legend.addItem({
-
+legend.addItem({
+title
 });
 

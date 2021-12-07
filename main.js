@@ -134,28 +134,22 @@ const activeCoverageStyle = function (feature) {
   };
   return styleTable[feature.get("dbm")]
 };
-  // // 01 2 2 3 indoor and outdoor coverage
-  // const active120 = new Style({ fill: new Fill({color: 'rgba( 107, 176, 175, 1 )'})})
-  // const active110 = new Style({ fill: new Fill({color: 'rgba( 171, 221, 164, 1 )'})})
-  // const active100 = new Style({ fill: new Fill({color: 'rgba( 213, 238, 178, 1 )'})})
-  // const active90 = new Style({ fill: new Fill({color: 'rgba( 255, 255, 191, 1 )'})})
-  // const active80 = new Style({ fill: new Fill({color: 'rgba( 254, 215, 144, 1 )'})})
-  // const active70 = new Style({ fill: new Fill({color: 'rgba( 253, 174, 97, 1 )'})})
-  // const active60 = new Style({ fill: new Fill({color: 'rgba( 234, 99, 62, 1 )'})})
-  // const active50 = new Style({ fill: new Fill({color: 'rgba( 215, 25, 28, 1 )'})})
-  // const activeCoverageStyle = function (feature) {
-  //   const styleTable = {
-  //     "-120": active120,
-  //     "-110": active110,
-  //     "-100": active100,
-  //     "-90": active90,
-  //     "-80": active80,
-  //     "-70": active70,
-  //     "-60": active60,
-  //     "-50": active50,
-  //   };
-  //   return styleTable[feature.get("dbm")]
-  // };
+// 01 2 2 3 indoor and outdoor coverage
+const outdoor = new Style({ fill: new Fill({color: 'rgba( 171, 221, 164, 1 )'})})
+const indoor = new Style({ fill: new Fill({color: 'rgba( 253, 174, 97, 1 )'})})
+const indoorOutdoorCoverageStyle = function (feature) {
+  const styleTable = {
+    "-120": outdoor,
+    "-110": outdoor,
+    "-100": outdoor,
+    "-90": indoor,
+    "-80": indoor,
+    "-70": indoor,
+    "-60": indoor,
+    "-50": indoor,
+  };
+  return styleTable[feature.get("dbm")]
+};
 
 
 // 02 define layers and content
@@ -220,7 +214,7 @@ const potentialCoverageMVT = new VectorTileLayer({
     'http://localhost:8080/geoserver/gwc/service/tms/1.0.0/melita%3Apotential_coverage_test@EPSG%3A3857@pbf/{z}/{x}/{-y}.pbf',
     maxZoom: 21,
   }),
-  style: potentialCoverageStyle, 
+  style: indoorOutdoorCoverageStyle, 
 });
 potentialCoverageMVT.setProperties({
   hello: "hello",
@@ -235,7 +229,7 @@ var map = new Map({
   target: 'map',
   layers: [
       cartoLightAll,
-//      potentialCoverageMVT,
+      potentialCoverageMVT,
       activeCoverageMVT,
 //      gatewayLocationsWFS
   ],

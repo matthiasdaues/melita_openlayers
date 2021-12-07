@@ -14,6 +14,7 @@ import {bbox as bboxStrategy} from 'ol/loadingstrategy';
 import GeoJSON from 'ol/format/GeoJSON';
 
 // controls
+// @ts-ignore
 import {defaults as defaultControls, OverviewMap, ZoomToExtent} from 'ol/control';
 import ScaleLine from 'ol/control/ScaleLine';
 import MousePosition from 'ol/control/MousePosition';

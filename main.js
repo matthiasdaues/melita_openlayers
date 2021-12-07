@@ -136,7 +136,7 @@ const activeCoverageStyle = function (feature) {
 };
 // 01 2 2 3 indoor and outdoor coverage
 const outdoor = new Style({ fill: new Fill({color: 'rgba( 171, 221, 164, 1 )'})})
-const indoor = new Style({ fill: new Fill({color: 'rgba( 253, 174, 97, 1 )'})})
+const indoor = new Style({ fill: new Fill({color: 'rgba( 254, 215, 144, 1 )'})})
 const indoorOutdoorCoverageStyle = function (feature) {
   const styleTable = {
     "-120": outdoor,

@@ -227,11 +227,12 @@ var map = new Map({
 
 // Vector layer
 var vector = new VectorLayer({
-  source: new VectorSource()
+  source: new VectorSource(),
+  style: locationStyleActive
 })
 map.addLayer(vector);
 
-var f0 = new eature(new Point(melitaWebMercator));
+var f0 = new Feature(new Point(melitaWebMercator));
 vector.getSource().addFeature(f0);
 
 

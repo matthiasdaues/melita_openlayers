@@ -52,6 +52,7 @@ import Select from 'ol/interaction/Select';
 // overlays und popups
 import PopupFeature from "ol-ext/overlay/PopupFeature";
 import ol_legend_Legend from 'ol-ext/legend/Legend';
+import ol_legend_Item from 'ol-ext/legend/Item';
 
 
 // 00 define basemaps
@@ -231,4 +232,8 @@ var legend = new Legend({
   title: 'Legende'
 });
 map.addControl(legend);
+var coverage_legend = new ol_legend_Item({
+  title: 'Coverage'
+});
+legend.addItem(coverage_legend);
 

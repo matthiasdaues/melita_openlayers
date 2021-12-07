@@ -12,6 +12,8 @@ import {bbox as bboxStrategy} from 'ol/loadingstrategy';
 
 // formats
 import GeoJSON from 'ol/format/GeoJSON';
+import Feature from 'ol/Feature';
+import Point from 'ol/geom/Point';
 
 // controls
 import {defaults as defaultControls, OverviewMap, ZoomToExtent} from 'ol/control';
@@ -202,7 +204,7 @@ potentialCoverageMVT.setProperties({
   world: "World!"
 });
 
-var f0 = new ol.Feature(new ol.geom.Point(melitaWebMercator));
+var f0 = new Feature(new Point(melitaWebMercator));
 vector.getSource().addFeature(f0);
 
 

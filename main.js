@@ -230,7 +230,7 @@ var map = new Map({
   layers: [
       cartoLightAll,
       potentialCoverageMVT,
-      activeCoverageMVT,
+//      activeCoverageMVT,
 //      gatewayLocationsWFS
   ],
   view: new View({

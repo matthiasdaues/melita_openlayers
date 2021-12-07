@@ -17,7 +17,7 @@ import GeoJSON from 'ol/format/GeoJSON';
 import {defaults as defaultControls, OverviewMap, ZoomToExtent} from 'ol/control';
 import ScaleLine from 'ol/control/ScaleLine';
 import MousePosition from 'ol/control/MousePosition';
-import Legend from 'ol-ext/control/Legend';
+import {Legend as LegendControl} from 'ol-ext/control/Legend';
 
 
 // sources
@@ -228,12 +228,13 @@ map.addControl(scaleline);
 var zoom2extent = new ZoomToExtent({});
 map.addControl(zoom2extent);
 // add legend
-var legendCtrl = new Legend({
+var legend = new ol.legend.Legend({
+  title: 'Legend',
+  style: getFeatureStyle
+})
+var legendCtrl = new LegendControl({ 
   legend: legend,
   collapsed: false
 });
 map.addControl(legendCtrl);
-legend.addItem({
-title
-});
 

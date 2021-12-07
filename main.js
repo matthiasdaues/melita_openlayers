@@ -51,6 +51,7 @@ import Select from 'ol/interaction/Select';
 
 // overlays und popups
 import PopupFeature from "ol-ext/overlay/PopupFeature";
+import ol_legend_Legend from 'ol-ext/legend/Legend';
 
 
 // 00 define basemaps
@@ -225,4 +226,7 @@ map.addControl(scaleline);
 // add zoom to extent
 var zoom2extent = new ZoomToExtent({});
 map.addControl(zoom2extent);
+// add legend
+var legend = new Le();
+map.addControl(legend);
 

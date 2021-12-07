@@ -235,7 +235,10 @@ var zoom2extent = new ZoomToExtent({});
 map.addControl(zoom2extent);
 // add legend
 var legend = new ol_legend_Legend({
-  title: 'C'
+  title: 'Coverage and Gateways',
+  style: new Style({
+    background: new Fill({color: 'rgba( 107, 176, 175, 1 )'}),
+  })
 })
 var legendCtrl = new ol_control_Legend({ 
   legend: legend,

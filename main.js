@@ -228,10 +228,11 @@ map.addControl(scaleline);
 var zoom2extent = new ZoomToExtent({});
 map.addControl(zoom2extent);
 // add legend
-var legend = new Legend({
-  title: 'Legende'
+var legendCtrl = new Legend({
+  legend: legend,
+  collapsed: false
 });
-map.addControl(legend);
+map.addControl(legendCtrl);
 var coverage_legend = new ol_legend_Item({
   title: 'Coverage'
 });

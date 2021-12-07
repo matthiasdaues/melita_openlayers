@@ -227,6 +227,6 @@ map.addControl(scaleline);
 var zoom2extent = new ZoomToExtent({});
 map.addControl(zoom2extent);
 // add legend
-var legend = new Le();
+var legend = new Legend();
 map.addControl(legend);
 

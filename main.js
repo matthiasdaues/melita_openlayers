@@ -256,4 +256,4 @@ legend.on('select', function(e) {
   if (e.index >= 0) console.log((e.symbol ? 'You click on symbol: ':'You click on row: ')+e.item.get('title')+' ('+e.index+')');
   else console.log('You click on the title: '+e.item.get('title'));
 });
-legend.addItem({ title: 'center point', feature: f0, typeGeom: Point, style: locationStyleActive });
+legend.addItem({ title: 'center point', feature: f0, typeGeom: Circle, style: locationStyleActive });

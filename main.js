@@ -17,7 +17,6 @@ import GeoJSON from 'ol/format/GeoJSON';
 import {defaults as defaultControls, OverviewMap, ZoomToExtent} from 'ol/control';
 import ScaleLine from 'ol/control/ScaleLine';
 import MousePosition from 'ol/control/MousePosition';
-// @ts-ignore
 import Legend from 'ol-ext/control/Legend';
 
 

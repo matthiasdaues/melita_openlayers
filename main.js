@@ -223,52 +223,7 @@ var map = new Map({
   }),
 });
 
-// Style function
-function getFeatureStyle (feature) {
-  var st= [];
-  // Shadow style
-  st.push (new Style ({
-    image: new Shadow ({
-      radius: 15
-    })
-  }));
-  var st1= [];
-  // Font style
-  st.push ( new ol.style.Style ({
-    image: new ol.style.FontSymbol({
-      form: "marker", 
-      glyph: 'fa-car', 
-      radius: 15, 
-      offsetY: -15,
-      fontSize: .7,
-      color: '#fff',
-      fill: new ol.style.Fill ({
-        color: 'blue'
-      }),
-      stroke: new ol.style.Stroke ({
-        color: '#fff',
-        width: 2
-      })
-    }),
-    stroke: new ol.style.Stroke ({
-      width: 5,
-      color: '#f00'
-    }),
-    fill: new ol.style.Fill ({
-      color: [255, 0, 0, 0.6]
-    })
-  }));
-  return st;
-}
 
-// Vector layer
-var vector = new VectorLayer({
-  source: new VectorSource(),
-  style: locationStyleActive
-})
-map.addLayer(vector);
-var f0 = new Feature(new Point(melitaWebMercator));
-vector.getSource().addFeature(f0);
 
 
 // add controls and tools
@@ -280,8 +235,7 @@ var zoom2extent = new ZoomToExtent({});
 map.addControl(zoom2extent);
 // add legend
 var legend = new ol_legend_Legend({
-  title: 'Legend',
-  style: getFeatureStyle
+  title: 'C'
 })
 var legendCtrl = new ol_control_Legend({ 
   legend: legend,

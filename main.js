@@ -231,7 +231,6 @@ var vector = new VectorLayer({
   style: locationStyleActive
 })
 map.addLayer(vector);
-
 var f0 = new Feature(new Point(melitaWebMercator));
 vector.getSource().addFeature(f0);
 

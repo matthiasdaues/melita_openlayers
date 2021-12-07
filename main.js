@@ -256,16 +256,4 @@ legend.on('select', function(e) {
   if (e.index >= 0) console.log((e.symbol ? 'You click on symbol: ':'You click on row: ')+e.item.get('title')+' ('+e.index+')');
   else console.log('You click on the title: '+e.item.get('title'));
 });
-legend.addItem({ title: 'Car placemark', feature: f0 });
-function addSVG(svg, scale) {
-  legend.addItem({ 
-    title: 'SVG icon', 
-    typeGeom: 'Point',
-    style: new ol.style.Style({
-      image: new ol.style.Icon({
-        src: svg || 'https://upload.wikimedia.org/wikipedia/commons/6/67/OpenLayers_logo.svg',
-        scale: scale || .3
-      })
-    })
-  });
-}
+legend.addItem({ title: 'center point', feature: f0, typeGeom: Point, style: locationStyleActive });

@@ -251,12 +251,13 @@ var zoom2extent = new ZoomToExtent({});
 map.addControl(zoom2extent);
 var legend = new ol_legend_Legend({
   title: 'Coverage and Gateways',
-  className: 'ol-symbology',
+  className: '',
   style: new Style({
   fill: new Fill({color: 'rgba(1,1,1,1)'})
   })
 })
 var legendCtrl = new ol_control_Legend({ 
+  className: 'ol-legend',
   legend: legend,
   collapsed: false,
   collapsible: true
@@ -270,4 +271,4 @@ legend.addItem({
     fill: new Fill({color: 'rgba(1,1,1,1)'})
   })
 });
-document.getElementByClass('ol-title').style.color = 'red';
+document.getElementByClass('ol-legend').style.backgroundColor = 'red';

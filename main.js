@@ -271,4 +271,4 @@ map.addControl(zoom2extent);
     //     fill: new Fill({color: 'rgba(1,1,1,1)'})
     //   })
     // });
-    // document.getElementByClass('ol-title').style.fontSize = '10pt';
+    // document.getElementByClass('ol-title').style.fontSize = '10pt';np

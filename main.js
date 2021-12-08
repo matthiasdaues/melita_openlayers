@@ -214,7 +214,7 @@ const potentialCoverageMVT = new VectorTileLayer({
     'http://localhost:8080/geoserver/gwc/service/tms/1.0.0/melita%3Apotential_coverage_test@EPSG%3A3857@pbf/{z}/{x}/{-y}.pbf',
     maxZoom: 21,
   }),
-  style: indoorOutdoorCoverageStyle, 
+  style: activeCoverageStyle, 
 });
 potentialCoverageMVT.setProperties({
   hello: "hello",

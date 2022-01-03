@@ -1,7 +1,7 @@
 // import required modules
 
 // modules
-import './controls';
+// import './controls';
 
 // css
 import './style.css';

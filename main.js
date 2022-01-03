@@ -1,3 +1,11 @@
+// ToDo
+// legend
+// location with coverage overlay on click
+// popup on coverage area
+// popup on location
+// basemapswitcher
+// layer picker
+
 // import required modules
 
 // modules

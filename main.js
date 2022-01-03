@@ -223,6 +223,21 @@ potentialCoverageMVT.setProperties({
   hello: "hello",
   world: "World!"
 });
+// 02 1 7 indoor-outdoor coverage as Vector Tile Layer
+const indoorOutdoorCoverage = new VectorTileLayer({
+  className: 'indoorOutdoorCoverage',
+  source: new VectorTileSource({
+    format: new MVT(),
+    url: 
+    'http://localhost:8080/geoserver/gwc/service/tms/1.0.0/melita%3Apotential_coverage_test@EPSG%3A3857@pbf/{z}/{x}/{-y}.pbf',
+    maxZoom: 21,
+  }),
+  style: indoorOutdoorCoverageStyle, 
+});
+indoorOutdoorCoverage.setProperties({
+  hello: "hello",
+  world: "World!"
+});
 
 
 
@@ -232,7 +247,7 @@ var map = new Map({
   target: 'map',
   layers: [
       cartoLightAll,
-      potentialCoverageMVT,
+      indoorOutdoorCoverage,
 //      activeCoverageMVT,
 //      gatewayLocationsWFS
   ],

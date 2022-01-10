@@ -1,8 +1,8 @@
 // ToDo
-// legend
-// location with coverage overlay on click
-// popup on coverage area
 // popup on location
+// popup on coverage area
+// location with coverage overlay on click
+// legend
 // basemapswitcher
 // layer picker
 

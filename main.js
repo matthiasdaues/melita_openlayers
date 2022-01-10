@@ -110,6 +110,7 @@ const locationStyleInactive = new Style({
   })
 });
 // 01 2 1 3 dynamic gateway location style by status
+const properties = JSON.parse("properties");
 const locationStyle = function (feature) {
   const styleTable = {
     "0": locationStyleInactive,

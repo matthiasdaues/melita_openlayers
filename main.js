@@ -116,7 +116,7 @@ const locationStyle = function (feature) {
     "1": locationStyleActive,
     "2": locationStyleActive
   };
-  return styleTable[feature.get(properties.gateway.status)]
+  return styleTable[feature.get("properties['gateway']['status']")]
 };
 // 01 2 2 coverage styles
 // 01 2 2 1 potential coverage over all available locations
@@ -171,7 +171,7 @@ const gatewayLocationsWFS = new VectorLayer({
   source: new VectorSource({
     format: new GeoJSON(),
     url:'http://localhost:8080/geoserver/ows?service=wfs&' +
-        'version=1.1.0&request=GetFeature&typename=melita:locations&' +
+        'version=1.1.0&request=GetFeature&typename=melita:location&' +
         'outputFormat=application/json&srsname=EPSG:3857&'
     }),
   style: locationStyle

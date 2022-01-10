@@ -114,9 +114,9 @@ const locationStyle = function (feature) {
   const styleTable = {
     "0": locationStyleInactive,
     "1": locationStyleActive,
-    "2": locationStyleActive
+    "2": locationStyleActive,
   };
-  return styleTable[feature.get("properties['gateway']['status']")]
+  return styleTable[feature.parse(properties['gateway']['status'])]
 };
 // 01 2 2 coverage styles
 // 01 2 2 1 potential coverage over all available locations

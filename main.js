@@ -64,6 +64,7 @@ import { multiply } from 'ol/transform';
 import Select from 'ol/interaction/Select';
 
 // overlays und popups
+import Overlay from 'ol/Overlay';
 import PopupFeature from "ol-ext/overlay/PopupFeature";
 import ol_legend_Item from 'ol-ext/legend/Item';
 

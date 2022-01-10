@@ -253,10 +253,10 @@ const locationsMVT = new VectorTileLayer({
   source: new VectorTileSource({
     format: new MVT(),
     url: 
-    'http://localhost:8080/geoserver/gwc/service/tms/1.0.0/melita%3Apotential_coverage_test@EPSG%3A3857@pbf/{z}/{x}/{-y}.pbf',
+    'http://localhost:8080/geoserver/gwc/service/tms/1.0.0/melita%3Amv_gateways@EPSG%3A3857@pbf/{z}/{x}/{-y}.pbf',
     maxZoom: 21,
   }),
-  style: locationsMVT, 
+  style: locationStyle, 
 });
 
 
@@ -269,7 +269,7 @@ var map = new Map({
       cartoLightAll,
       indoorOutdoorCoverage,
 //      activeCoverageMVT,
-//      gatewayLocationsWFS
+      gatewayLocationsWFS
   ],
   view: new View({
     center: melitaWebMercator,

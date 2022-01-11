@@ -56,7 +56,7 @@ import {createStringXY} from 'ol/coordinate';
 import {fromLonLat} from 'ol/proj';
 
 // styles
-import {Circle as CircleStyle, Fill, Stroke, Style} from 'ol/style';
+import {Circle as CircleStyle, Fill, Stroke, Style, Text} from 'ol/style';
 import { red } from 'nanocolors';
 import { multiply } from 'ol/transform';
 
@@ -107,6 +107,7 @@ const locationStyleInactive = new Style({
     radius: 2,
     fill: new Fill({color: 'lightgrey'}),
     stroke: new Stroke({color: '#076859', width: 0.5}),
+    text: new Text({font: '11px "Open Sans", placement: '})
   })
 });
 // 01 2 1 3 dynamic gateway location style by status

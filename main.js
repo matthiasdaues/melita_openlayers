@@ -111,7 +111,8 @@ const locationStyleInactive = new Style({
 });
 // 01 2 1 3 dynamic gateway location style by status
 const locationStyle = function (feature) {
-  const gateway_status = feature.get("properties"); 
+  const properties = feature.get('properties');
+  const gateway = properties.get('gateway')
   const styleTable = {
     "0": locationStyleInactive,
     "1": locationStyleActive,

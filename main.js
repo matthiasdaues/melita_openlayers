@@ -111,13 +111,14 @@ const locationStyleInactive = new Style({
 });
 // 01 2 1 3 dynamic gateway location style by status
 const locationStyle = function (feature) {
+  const gateway_status = feature.get("status"); 
   const styleTable = {
     "0": locationStyleInactive,
     "1": locationStyleActive,
     "2": locationStyleActive,
   };
   return styleTable[
-    "0"
+    gateway_status || "0"
   ]
 };
 // 01 2 2 coverage styles

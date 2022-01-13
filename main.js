@@ -54,6 +54,8 @@ import WMTSCapabilities from 'ol/format/WMTSCapabilities';
 // geoinformation and projections
 import {createStringXY} from 'ol/coordinate';
 import {fromLonLat} from 'ol/proj';
+import {toLonLat} from 'ol/proj';
+import {toStringHDMS} from 'ol/coordinate';
 
 // styles
 import {Circle as CircleStyle, Fill, Stroke, Style, Text} from 'ol/style';
@@ -76,12 +78,6 @@ const cartoLightAll = new TileLayer({
       url:'http://{1-4}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png'
     })
 });
-const cartoDarkAll = new TileLayer({
-    source: new XYZ({
-      url:'http://{1-4}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png'
-    })
-});
-
 // 00 2 basemaps from ESRI
 // 00 3 basemaps from OSM
 
@@ -180,61 +176,10 @@ const gatewayLocationsWFS = new VectorLayer({
   style: locationStyle
 });
 // 02 1 2 Gateway-Locations as WMS
-const gatewayLocationsWMS = new TileLayer({
-  source: new TileWMS({
-    url: 'http://localhost:8080/geoserver/melita/wms',
-    params: {'LAYERS': 'mv_gateways'}, // for tiled WMS add ", 'TILED': true"
-    serverType: 'geoserver',
-    transition: 0,
-  })
-});
-
 // 02 1 3 Potential Coverage as WFS
-const potentialCoverageWFS = new VectorLayer({
-  source: new VectorSource({
-    format: new GeoJSON(),
-    url:'http://localhost:8080/geoserver/ows?service=wfs&' +
-        'version=1.1.0&request=GetFeature&typename=melita:potential_coverage_test&' +
-        'outputFormat=application/json&srsname=EPSG:3857&'
-    }),
-  style: potentialCoverageStyle
-});
 // 02 1 4 Active Coverage as WFS
-const activeCoverageWFS = new VectorLayer({
-  source: new VectorSource({
-    format: new GeoJSON(),
-    url:'http://localhost:8080/geoserver/ows?service=wfs&' +
-        'version=1.1.0&request=GetFeature&typename=melita:active_coverage&' +
-        'outputFormat=application/json&srsname=EPSG:3857&'
-    }),
-  style: activeCoverageStyle
-});
 // 02 1 5 active coverage as Vector Tile Layer
-const activeCoverageMVT = new VectorTileLayer({
-  className: 'activeCoverageMVT',
-  source: new VectorTileSource({
-    format: new MVT(),
-    url: 
-    'http://localhost:8080/geoserver/gwc/service/tms/1.0.0/melita%3Aactive_coverage@EPSG%3A3857@pbf/{z}/{x}/{-y}.pbf',
-    maxZoom: 21,
-  }),
-  style: activeCoverageStyle,
-});
 // 02 1 6 potential coverage as Vector Tile Layer
-const potentialCoverageMVT = new VectorTileLayer({
-  className: 'potentialCoverageMVT',
-  source: new VectorTileSource({
-    format: new MVT(),
-    url: 
-    'http://localhost:8080/geoserver/gwc/service/tms/1.0.0/melita%3Apotential_coverage_test@EPSG%3A3857@pbf/{z}/{x}/{-y}.pbf',
-    maxZoom: 21,
-  }),
-  style: activeCoverageStyle, 
-});
-potentialCoverageMVT.setProperties({
-  hello: "hello",
-  world: "World!"
-});
 // 02 1 7 indoor-outdoor coverage as Vector Tile Layer
 const indoorOutdoorCoverage = new VectorTileLayer({
   className: 'indoorOutdoorCoverage',
@@ -251,51 +196,36 @@ indoorOutdoorCoverage.setProperties({
   world: "World!"
 });
 // 02 1 7 locations as Vector Tile Layer
-const locationsMVT = new VectorTileLayer({
-  className: 'indoorOutdoorCoverage',
-  source: new VectorTileSource({
-    format: new MVT(),
-    url: 
-    'http://localhost:8080/geoserver/gwc/service/tms/1.0.0/melita%3Amv_gateways@EPSG%3A3857@pbf/{z}/{x}/{-y}.pbf',
-    maxZoom: 21,
-  }),
-  style: locationStyle, 
+
+
+// Elements that make up the popup. 
+const container = document.getElementById('popup');
+const content = document.getElementById('popup-content');
+const closer = document.getElementById('popup-closer');
+
+// Create an overlay to anchor the popup to the map.
+const overlay = new Overlay({
+  element: container,
+  autoPan: {
+    animation: {
+      duration: 250,
+    },
+  },
 });
 
-// /**
-//  * Elements that make up the popup.
-//  */
-var container = document.getElementById('popup');
-var content = document.getElementById('popup-content');
-var closer = document.getElementById('popup-closer');
-
-
-//  /**
-//   * Add a click handler to hide the popup.
-//   * @return {boolean} Don't follow the href.
-//   */
-closer.onclick = function() {
+// Add a click handler to hide the popup.
+// @return {boolean} Don't follow the href.
+closer.onclick = function () {
   overlay.setPosition(undefined);
   closer.blur();
   return false;
 };
 
 
-//  /**
-//   * Create an overlay to anchor the popup to the map.
-//   */
-var overlay = new ol.Overlay({
-  element: container,
-  autoPan: true,
-  autoPanAnimation: {
-    duration: 250
-  }
-});
- 
 
 
 // put all on a map
-var map = new Map({
+const map = new Map({
   target: 'map',
   layers: [
       cartoLightAll,
@@ -303,12 +233,27 @@ var map = new Map({
 //      activeCoverageMVT,
       gatewayLocationsWFS
   ],
+  overlays: [overlay],
   view: new View({
     center: melitaWebMercator,
     zoom: 6,
   }),
 });
 
-
-
+map.on('singleclick', function(evt) {
+  var name = map.forEachFeatureAtPixel(evt.pixel, function(feature) {
+    return feature.get('name');
+  })
+  if (name) {
+    container.style.display="block";
+    var coordinate = evt.coordinate;
+    content.innerHTML = name;
+    overlay.setPosition(coordinate);
+  } else {
+    container.style.display="none";
+  }
+});
+map.on('pointermove', function(evt) {
+  map.getTargetElement().style.cursor = map.hasFeatureAtPixel(evt.pixel) ? 'pointer' : '';
+});
 

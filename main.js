@@ -107,8 +107,7 @@ const locationStyleInactive = new Style({
     radius: 2,
     fill: new Fill({color: 'lightgrey'}),
     stroke: new Stroke({color: '#076859', width: 0.5}),
-    text: new Text({font: '11px "Open Sans", placement: '})
-  })
+  }),
 });
 // 01 2 1 3 dynamic gateway location style by status
 const locationStyle = function (feature) {

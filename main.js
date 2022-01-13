@@ -213,13 +213,13 @@ const overlay = new Overlay({
   },
 });
 
-// Add a click handler to hide the popup.
-// @return {boolean} Don't follow the href.
-closer.onclick = function () {
-  overlay.setPosition(undefined);
-  closer.blur();
-  return false;
-};
+// // Add a click handler to hide the popup.
+// // @return {boolean} Don't follow the href.
+// closer.onclick = function () {
+//   overlay.setPosition(undefined);
+//   closer.blur();
+//   return false;
+// };
 
 
 
